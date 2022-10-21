@@ -11,6 +11,7 @@ import { useAuth, ProvideAuth } from "./contexts/auth";
 import Login from "./components/Login";
 import NewUser from "./components/NewUser";
 import ProjectList from "./components/ProjectList";
+import { ProvideAlert } from "./contexts/alert";
 
 function PrivateRoute({ children, ...rest }) {
   let { token } = useAuth();
@@ -36,23 +37,25 @@ function PrivateRoute({ children, ...rest }) {
 function App() {
   return (
     <div className="App">
-      <ProvideAuth>
-        <Router>
-          <div>
-            <Switch>
-              <Route exact path={["/", "/login"]}>
-                <Login />
-              </Route>
-              <Route exact path="/new-user">
-                <NewUser />
-              </Route>
-              <PrivateRoute path="/projects">
-                <ProjectList />
-              </PrivateRoute>
-            </Switch>
-          </div>
-        </Router>
-      </ProvideAuth>
+      <ProvideAlert>
+        <ProvideAuth>
+          <Router>
+            <div>
+              <Switch>
+                <Route exact path={["/", "/login"]}>
+                  <Login />
+                </Route>
+                <Route exact path="/new-user">
+                  <NewUser />
+                </Route>
+                <PrivateRoute path="/projects">
+                  <ProjectList />
+                </PrivateRoute>
+              </Switch>
+            </div>
+          </Router>
+        </ProvideAuth>
+      </ProvideAlert>
     </div>
   );
 }
