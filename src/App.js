@@ -10,7 +10,7 @@ import { useAuth, ProvideAuth } from "./contexts/auth";
 
 import Login from "./components/Login";
 import NewUser from "./components/NewUser";
-import Projects from "./components/Projects";
+import ProjectList from "./components/ProjectList";
 
 function PrivateRoute({ children, ...rest }) {
   let { token } = useAuth();
@@ -33,10 +33,6 @@ function PrivateRoute({ children, ...rest }) {
   );
 }
 
-function ProtectedPage() {
-  return <h3>Protected</h3>;
-}
-
 function App() {
   return (
     <div className="App">
@@ -51,7 +47,7 @@ function App() {
                 <NewUser />
               </Route>
               <PrivateRoute path="/projects">
-                <Projects />
+                <ProjectList />
               </PrivateRoute>
             </Switch>
           </div>

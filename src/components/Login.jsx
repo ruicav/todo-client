@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -11,6 +11,10 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const { signIn } = useAuth();
   const history = useHistory();
+
+  useEffect(() => {
+    if (localStorage.getItem("todo:token")) history.push("/projects");
+  }, []);
 
   return (
     <Box component="form" noValidate autoComplete="off">
@@ -28,6 +32,7 @@ export default function Login() {
           onChange={(event) => {
             setEmail(event.target.value);
           }}
+          margin="normal"
         />
 
         <TextField
@@ -36,6 +41,7 @@ export default function Login() {
           variant="outlined"
           placeholder="Password"
           value={password}
+          margin="normal"
           onChange={(event) => {
             setPassword(event.target.value);
           }}

@@ -20,8 +20,7 @@ export default function NewUser() {
         justifyContent="flex-start"
         alignItems="center"
       >
-        <Typography variant="h2">To-do app</Typography>
-        <Typography variant="h4">Login</Typography>
+        <Typography variant="body1">New User</Typography>
         <TextField
           id="email-input"
           placeholder="Name"
